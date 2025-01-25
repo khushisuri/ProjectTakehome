@@ -1,0 +1,8 @@
+.el-list{
+    margin: 20px;
+    background-color: #f5f3f4;
+}
+
+.el-list > h2{
+    color: #15616d;
+}

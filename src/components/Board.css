@@ -1,0 +1,30 @@
+.board {
+    margin: 20px;
+    width: 40%;
+    border-radius: 10px;
+    background-color: #edf2f4;
+    height: max-content;
+}
+
+.content{
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+.board .el-wrapper{
+    background-color: #edf2f4;
+}
+
+#preview{
+    width:100%;
+    padding: 20px;
+    border-radius: 0;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #e9c46a;
+}
+
+#preview:hover{
+    filter: brightness(1.1);
+}

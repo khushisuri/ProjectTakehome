@@ -1,0 +1,28 @@
+.all-forms{
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.form-item{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: max-content;
+    background-color: #15616d;
+    border-radius: 10px;
+     min-height: 200px;
+}
+
+
+.form-item label{
+    color: white;
+}
+
+.form-item .el-wrapper{
+    background-color: transparent;
+}

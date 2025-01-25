@@ -1,0 +1,50 @@
+.edit {
+  background-color: #004e89;
+  padding-top: 15px;
+  height: max-content;
+  border-radius: 10px;
+  position: absolute;
+  margin: 17px auto;
+  z-index: 7;
+}
+
+h2{
+    color: white;
+    text-transform: capitalize;
+    margin: 10px;
+}
+
+.edit-form {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  gap: 10px;
+  text-align: start;
+  padding:15px 20px;
+}
+
+.edit-form label {
+  color: white;
+}
+
+.edit button {
+  background-color: #ff6b35;
+  color: white;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  padding: 15px;
+}
+
+button:hover{
+    filter: brightness(1.1);
+}
+
+.backdrop{
+   height: 100vw;
+   width: 100vw;
+   position: absolute;
+   background-color: #8d99ae;
+   opacity: 0.5;
+   z-index: 3;
+}

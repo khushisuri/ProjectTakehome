@@ -1,0 +1,52 @@
+
+.el-wrapper{
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    text-transform: capitalize;
+    background-color: #eaeaea ;
+    border-radius: 10px;
+    max-width: 500px;
+}
+
+label{
+    font-size: 20px;
+    color: #1b4965;
+    font-weight: 700;
+}
+
+input,textarea{
+    outline: none;
+    border: 1px solid #eaeaea ;
+    border-radius: 10px;
+    padding: 10px;
+    width: 80%;
+}
+
+input[type="date"],input[type="checkbox"],input[type="radio"]{
+   width: max-content;
+   padding: 10px;
+}
+select{
+  border: 1px solid #f5f3f4;
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: 50%;
+}
+
+button{
+    background-color: #3a86ff;
+    color: white;
+    border: 1px solid #3a86ff;
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 100px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #629efe;
+}

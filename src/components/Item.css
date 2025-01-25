@@ -1,0 +1,12 @@
+.el-container{
+    display: flex;
+    max-width: 500px;
+    padding: 5px 20px;
+    margin: auto;
+    width: max-content;
+    min-width: 400px;
+}
+
+.el-container .el-wrapper{
+    width: 100%;
+}
