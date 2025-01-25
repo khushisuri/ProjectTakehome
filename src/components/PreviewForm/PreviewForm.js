@@ -13,14 +13,26 @@ const PreviewForm = () => {
     setShowPreview,
   } = useContext(ItemsContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const submitHandler = () => {
     setSubmittedForms((submittedForms) => [...submittedForms, [...boardList]]);
-    setShowPreview(false)
-    navigate("/forms")
-  };
 
+    fetch('http://localhost:8000/api/forms/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(boardList)
+    })
+      .then((data) => data.json())
+      .then((val) => {
+        console.log(val);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setShowPreview(false);
+    navigate("/forms");
+  };
 
   return (
     <>
