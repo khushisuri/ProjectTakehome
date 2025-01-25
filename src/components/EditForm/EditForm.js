@@ -20,6 +20,9 @@ const EditForm = () => {
   const [placeholderVal, setPlaceholderIdVal] = useState("");
   const [requiredVal, setRequiredVal] = useState(false);
 
+   useEffect(()=>{
+    console.log(boardList);
+  })
   const editSubmitHandler = (e) => {
     e.preventDefault();
     const obj =
@@ -83,8 +86,9 @@ const EditForm = () => {
                 type="checkbox"
                 name="id-required"
                 id="id-required"
-                value={requiredVal ? true : false}
-                onChange={(e) => setRequiredVal((requiredVal) => !requiredVal)}
+                value={requiredVal}
+                onChange={(e) => {setRequiredVal(!requiredVal);console.log(e.target);
+                }}
               ></input>
             </>
           )}
