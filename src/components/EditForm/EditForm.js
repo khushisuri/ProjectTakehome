@@ -87,8 +87,7 @@ const EditForm = () => {
                 name="id-required"
                 id="id-required"
                 value={requiredVal}
-                onChange={(e) => {setRequiredVal(!requiredVal);console.log(e.target);
-                }}
+                onChange={(e) => setRequiredVal(!requiredVal)}
               ></input>
             </>
           )}
