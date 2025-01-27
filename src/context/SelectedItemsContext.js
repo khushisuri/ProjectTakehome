@@ -1,6 +1,7 @@
 import React from "react";
 import { createContext } from "react";
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export const ItemsContext = createContext("");
 
@@ -78,7 +79,7 @@ const SelectedItemsContext = ({ children }) => {
     const selectedEl = elList.filter((el) => el.id === id);
     setBoardList((boardList) => [
       ...boardList,
-      { ...selectedEl[0], id: boardList.length + 1 },
+      { ...selectedEl[0], id: uuidv4() },
     ]);
   };
   return (

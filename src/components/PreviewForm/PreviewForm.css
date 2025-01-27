@@ -5,12 +5,27 @@
     justify-content: space-between;
     height: max-content;
     background-color: #15616d;
-    border-radius: 10px; position: absolute;
+    border-radius: 10px; 
+    position: absolute;
     margin: 17px auto;
     z-index: 7;
     min-height: 500px;
 }
 
+.form-name{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    background-color: #06d6a0;
+    padding: 10px 0px;
+}
+
+.form-name input{
+    width: 80%;
+    margin: auto;
+}
+ 
 .preview-form .el-wrapper{
     background-color: #15616d;
 }

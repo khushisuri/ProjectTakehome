@@ -15,10 +15,9 @@ mongoose
   .catch((err) => console.log(err));
 
 app.post("/api/forms/save", (req, res) => {
-  console.log(req.body);
   const obj = {
-    form_name: "test",
-    form_data: JSON.stringify(req.body),
+    form_name: req.body.name,
+    form_data: JSON.stringify(req.body.boardList),
   };
   const form = new Form(obj);
 

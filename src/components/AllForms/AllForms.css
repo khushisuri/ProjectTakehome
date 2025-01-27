@@ -26,3 +26,9 @@
 .form-item .el-wrapper{
     background-color: transparent;
 }
+
+.date{
+    color: white;
+    text-align: left;
+    margin: 0px 20px;
+}

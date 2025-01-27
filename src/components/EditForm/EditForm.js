@@ -20,9 +20,7 @@ const EditForm = () => {
   const [placeholderVal, setPlaceholderIdVal] = useState("");
   const [requiredVal, setRequiredVal] = useState(false);
 
-   useEffect(()=>{
-    console.log(boardList);
-  })
+ 
   const editSubmitHandler = (e) => {
     e.preventDefault();
     const obj =

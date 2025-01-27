@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ItemsContext } from "../../context/SelectedItemsContext";
 import Form from "../Form/Form";
 import "./PreviewForm.css";
@@ -9,29 +9,35 @@ const PreviewForm = () => {
     boardList,
     showPreview,
     setSubmittedForms,
-    submittedForms,
+    setBoardList,
     setShowPreview,
   } = useContext(ItemsContext);
 
   const navigate = useNavigate();
+  const [name, setName] = useState("");
 
   const submitHandler = () => {
+    if(name !== ""){
     setSubmittedForms((submittedForms) => [...submittedForms, [...boardList]]);
-
-    fetch('http://localhost:8000/api/forms/save', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(boardList)
+    
+    fetch("http://localhost:8000/api/forms/save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({name:name,boardList:boardList}),
     })
       .then((data) => data.json())
       .then((val) => {
-        console.log(val);
+        console.log("success");
       })
       .catch((err) => {
         console.log(err);
       });
+    setBoardList([]);
     setShowPreview(false);
     navigate("/forms");
+    }else{
+      alert("Name cannot be empty")
+    }
   };
 
   return (
@@ -40,6 +46,15 @@ const PreviewForm = () => {
         className="preview-form"
         style={{ display: showPreview ? "flex" : "none" }}
       >
+        <div className="form-name">
+          <label htmlFor="form_name">Enter Form Name</label>
+          <input
+            type="text"
+            id="form_name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          ></input>
+        </div>
         <div>
           {boardList.map(({ id, name, placeholder, label }) => (
             <Form
