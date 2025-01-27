@@ -29,6 +29,7 @@ const AllForms = () => {
         val.forEach((item) => {
           const created_at = new Date(item.createdAt);
           const updated_at = new Date(item.updatedAt);
+          
 
           const data = {
             name: item.form_name,
@@ -36,6 +37,7 @@ const AllForms = () => {
             created_at: convertDate(created_at),
             updated_at: convertDate(updated_at),
           };
+          
           arr.push(data);
           setSubmittedForms(arr);
         });
@@ -64,7 +66,7 @@ const AllForms = () => {
               key={index}
             >
               <h2>{form.name}</h2>
-              {form.form_data.map(({ id, name, placeholder, label }) => (
+              {form?.form_data?.map(({ id, name, placeholder, label }) => (
                 <Form
                   id={id}
                   name={name}
