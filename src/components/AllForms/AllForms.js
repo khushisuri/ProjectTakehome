@@ -3,6 +3,7 @@ import { ItemsContext } from "../../context/SelectedItemsContext";
 import Form from "../Form/Form";
 import "./AllForms.css";
 
+import { useNavigate } from "react-router";
 const AllForms = () => {
   const { submittedForms, setSubmittedForms } = useContext(ItemsContext);
   const colors = ["#edae49", "#d1495b", "#00798c", "#30638e", "#003d5b"];
@@ -28,10 +29,10 @@ const AllForms = () => {
         const arr = [];
         val.forEach((item) => {
           const created_at = new Date(item.createdAt);
-          const updated_at = new Date(item.updatedAt);
+          const updated_at = new Date(item.updatedAt); 
           
-
           const data = {
+            id:item._id,
             name: item.form_name,
             form_data: JSON.parse(item.form_data),
             created_at: convertDate(created_at),
@@ -47,6 +48,8 @@ const AllForms = () => {
       });
   }, []);
 
+  const navigate = useNavigate();
+
   const getRandomArbitrary = (min, max) => {
     const val = Math.random() * (max - min) + min;
     return Math.round(val);
@@ -55,6 +58,8 @@ const AllForms = () => {
   const convertDate = (date) => {
     return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()} ${date.toTimeString()}`;
   };
+
+  
  
   return (
     <div className="all-forms">
@@ -64,6 +69,7 @@ const AllForms = () => {
               className="form-item"
               style={{ backgroundColor: colors[getRandomArbitrary(0, 5)] }}
               key={index}
+              onClick={()=> {navigate(`/forms/${form.id}`)}}
             >
               <h2>{form.name}</h2>
               {form?.form_data?.map(({ id, name, placeholder, label }) => (

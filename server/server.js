@@ -41,6 +41,18 @@ app.get("/api/forms/list", (req, res) => {
     });
 });
 
+
+app.get('/api/forms/:id', (req, res) => {
+  const id = req.params.id
+  Form.findById(id)
+    .then(result => {
+      res.send(result);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);
 });
