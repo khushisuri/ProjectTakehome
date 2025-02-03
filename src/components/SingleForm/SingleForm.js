@@ -62,12 +62,13 @@ const SingleForm = (id) => {
           style={{ backgroundColor: colors[getRandomArbitrary(0, 5)] }}
         >
           <h2>{form.name}</h2>
-          {form?.form_data?.map(({ id, name, placeholder, label }) => (
+          {form?.form_data?.map(({ id, name, placeholder, label ,options="" }) => (
             <Form
               id={id}
               name={name}
               label={label}
               placeholder={placeholder}
+              options={options}
               key={id}
             ></Form>
           ))}

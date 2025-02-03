@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import "./Board.css";
 import { useDrop } from "react-dnd";
 import { ItemsContext } from "../context/SelectedItemsContext";
@@ -22,13 +22,14 @@ const Board = () => {
       <div className="content" ref={drop}>
         {boardList.length > 0 ? <h1>Click on elements to edit properties</h1>:<h1>drag here</h1>}
         <div>
-          {boardList.map(({ id, name, placeholder, label }) => (
+          {boardList.map(({ id, name, placeholder, label ,options= "" }) => (
             <Form
               id={id}
               name={name}
               label={label}
               placeholder={placeholder}
               allowEdit={true}
+              options = {options}
             />
           ))}
         </div>

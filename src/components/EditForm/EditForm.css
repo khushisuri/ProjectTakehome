@@ -8,10 +8,10 @@
   z-index: 7;
 }
 
-h2{
-    color: white;
-    text-transform: capitalize;
-    margin: 10px;
+h2 {
+  color: white;
+  text-transform: capitalize;
+  margin: 10px;
 }
 
 .edit-form {
@@ -20,7 +20,7 @@ h2{
   flex-direction: column;
   gap: 10px;
   text-align: start;
-  padding:15px 20px;
+  padding: 15px 20px;
 }
 
 .edit-form label {
@@ -36,15 +36,28 @@ h2{
   padding: 15px;
 }
 
-button:hover{
-    filter: brightness(1.1);
+button:hover {
+  filter: brightness(1.1);
 }
 
-.backdrop{
-   height: 100vw;
-   width: 100vw;
-   position: absolute;
-   background-color: #8d99ae;
-   opacity: 0.5;
-   z-index: 3;
+.backdrop {
+  height: 100vw;
+  width: 100vw;
+  position: absolute;
+  background-color: #8d99ae;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+.btns-options {
+  display: flex;
+  flex-direction: row;
+}
+
+.btns-options button {
+  border-radius: 20px;
+}
+
+.btns-options button:first-child {
+  margin-right: 10px;
 }

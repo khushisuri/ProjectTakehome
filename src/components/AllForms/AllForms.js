@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ItemsContext } from "../../context/SelectedItemsContext";
 import Form from "../Form/Form";
 import "./AllForms.css";
@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 const AllForms = () => {
   const { submittedForms, setSubmittedForms } = useContext(ItemsContext);
   const colors = ["#edae49", "#d1495b", "#00798c", "#30638e", "#003d5b"];
-
+  const [loading, setLoading] = useState(true);
   const monthNames = [
     "January",
     "February",
@@ -29,22 +29,24 @@ const AllForms = () => {
         const arr = [];
         val.forEach((item) => {
           const created_at = new Date(item.createdAt);
-          const updated_at = new Date(item.updatedAt); 
-          
+          const updated_at = new Date(item.updatedAt);
+
           const data = {
-            id:item._id,
+            id: item._id,
             name: item.form_name,
             form_data: JSON.parse(item.form_data),
             created_at: convertDate(created_at),
             updated_at: convertDate(updated_at),
           };
-          
+
           arr.push(data);
           setSubmittedForms(arr);
+          setLoading(false);
         });
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   }, []);
 
@@ -56,37 +58,50 @@ const AllForms = () => {
   };
 
   const convertDate = (date) => {
-    return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()} ${date.toTimeString()}`;
+    return `${date.getDate()} ${
+      monthNames[date.getMonth()]
+    } ${date.getFullYear()} ${date.toTimeString()}`;
   };
 
-  
- 
   return (
     <div className="all-forms">
       {submittedForms.length > 0
-        ? submittedForms.map((form, index) => (
-            <div
-              className="form-item"
-              style={{ backgroundColor: colors[getRandomArbitrary(0, 5)] }}
-              key={index}
-              onClick={()=> {navigate(`/forms/${form.id}`)}}
-            >
-              <h2>{form.name}</h2>
-              {form?.form_data?.map(({ id, name, placeholder, label }) => (
-                <Form
-                  id={id}
-                  name={name}
-                  label={label}
-                  placeholder={placeholder}
-                  key={id}
-                ></Form>
-              ))}
-              <div className="date"> 
-                <p><span style={{fontWeight:"700"}}>Created At - </span>{form.created_at}</p>
-                <p><span style={{fontWeight:"700"}}>Updated At - </span>{form.updated_at}</p>
+        ? !loading
+          ? submittedForms.map((form, index) => (
+              <div
+                className="form-item"
+                style={{ backgroundColor: colors[getRandomArbitrary(0, 5)] }}
+                key={index}
+                onClick={() => {
+                  navigate(`/forms/${form.id}`);
+                }}
+              >
+                <h2>{form.name}</h2>
+                {form?.form_data?.map(
+                  ({ id, name, placeholder, label, options = "" }) => (
+                    <Form
+                      id={id}
+                      name={name}
+                      label={label}
+                      placeholder={placeholder}
+                      key={id}
+                      options={options}
+                    ></Form>
+                  )
+                )}
+                <div className="date">
+                  <p>
+                    <span style={{ fontWeight: "700" }}>Created At - </span>
+                    {form.created_at}
+                  </p>
+                  <p>
+                    <span style={{ fontWeight: "700" }}>Updated At - </span>
+                    {form.updated_at}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))
+            ))
+          : "Loading"
         : "No Forms"}
     </div>
   );

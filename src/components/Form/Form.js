@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./Form.css";
 import { ItemsContext } from "../../context/SelectedItemsContext";
 
-const Form = ({ id, name, label, placeholder, allowEdit=false }) => {
+const Form = ({ id, name, label, placeholder, allowEdit = false, options }) => {
   const { setEditElId } = useContext(ItemsContext);
   const editHandler = (id) => {
     if (allowEdit) {
@@ -39,10 +39,10 @@ const Form = ({ id, name, label, placeholder, allowEdit=false }) => {
       )}
       {name === "select" && (
         <select name={name} id={id}>
-          <option value="">option 1</option>
-          <option value="">option 2</option>
-          <option value="">option 3</option>
-          <option value="">option 4</option>
+          {options &&
+            options.map((opt,index) => (
+              <option key={index}value={opt.opValue}>{opt.opLabel}</option>
+            ))}
         </select>
       )}
       {name === "checkbox" && (

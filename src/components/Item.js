@@ -3,7 +3,7 @@ import "./Item.css";
 import { useDrag, useDrop } from "react-dnd";
 import Form from "./Form/Form";
 const Item = ({el}) => {
-    const {id,label,name,placeholder} = el
+    const {id,label,name,placeholder,options=""} = el
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "element",
     item: {id } ,
@@ -14,7 +14,7 @@ const Item = ({el}) => {
 
   return (
     <div ref={drag} className="el-container">
-      <Form id={id} name={name} label={label} placeholder={placeholder}/>
+      <Form id={id} name={name} label={label} placeholder={placeholder} options={options}/>
     </div>
   );
 };

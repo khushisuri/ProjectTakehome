@@ -17,26 +17,29 @@ const PreviewForm = () => {
   const [name, setName] = useState("");
 
   const submitHandler = () => {
-    if(name !== ""){
-    setSubmittedForms((submittedForms) => [...submittedForms, [...boardList]]);
-    
-    fetch("http://localhost:8000/api/forms/save", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({name:name,boardList:boardList}),
-    })
-      .then((data) => data.json())
-      .then((val) => {
-        console.log("success");
+    if (name !== "") {
+      setSubmittedForms((submittedForms) => [
+        ...submittedForms,
+        [...boardList],
+      ]);
+
+      fetch("http://localhost:8000/api/forms/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name, boardList: boardList }),
       })
-      .catch((err) => {
-        console.log(err);
-      });
-    setBoardList([]);
-    setShowPreview(false);
-    navigate("/forms");
-    }else{
-      alert("Name cannot be empty")
+        .then((data) => data.json())
+        .then((val) => {
+          console.log("success");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      setBoardList([]);
+      setShowPreview(false);
+      navigate("/forms");
+    } else {
+      alert("Name cannot be empty");
     }
   };
 
@@ -56,12 +59,13 @@ const PreviewForm = () => {
           ></input>
         </div>
         <div>
-          {boardList.map(({ id, name, placeholder, label }) => (
+          {boardList.map(({ id, name, placeholder, label, options = "" }) => (
             <Form
               id={id}
               name={name}
               label={label}
               placeholder={placeholder}
+              options={options}
               key={id}
             ></Form>
           ))}

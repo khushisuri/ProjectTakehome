@@ -1,10 +1,9 @@
 import React from "react";
 import { createContext } from "react";
 import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export const ItemsContext = createContext("");
-
 
 const SelectedItemsContext = ({ children }) => {
   const elList = [
@@ -35,6 +34,7 @@ const SelectedItemsContext = ({ children }) => {
       label: "select",
       placeholder: "placeholder",
       required: false,
+      options: [],
     },
     {
       id: 5,
@@ -73,7 +73,7 @@ const SelectedItemsContext = ({ children }) => {
   const [boardList, setBoardList] = useState([]);
   const [editElId, setEditElId] = useState("");
   const [showPreview, setShowPreview] = useState(false);
-  const [submittedForms,setSubmittedForms] = useState([]);
+  const [submittedForms, setSubmittedForms] = useState([]);
 
   const addItemToBoard = (id) => {
     const selectedEl = elList.filter((el) => el.id === id);
@@ -94,7 +94,7 @@ const SelectedItemsContext = ({ children }) => {
         showPreview,
         setShowPreview,
         submittedForms,
-        setSubmittedForms
+        setSubmittedForms,
       }}
     >
       {children}
