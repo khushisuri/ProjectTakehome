@@ -39,10 +39,11 @@ const Form = ({ id, name, label, placeholder, allowEdit = false, options }) => {
       )}
       {name === "select" && (
         <select name={name} id={id}>
-          {options &&
-            options.map((opt,index) => (
-              <option key={index}value={opt.opValue}>{opt.opLabel}</option>
-            ))}
+          {options.map((opt, index) => (
+            <option key={index} value={opt.opValue}>
+              {opt.opLabel}
+            </option>
+          ))}
         </select>
       )}
       {name === "checkbox" && (
