@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { ItemsContext } from "../../context/SelectedItemsContext";
 import Form from "../Form/Form";
 import "./PreviewForm.css";
@@ -16,7 +16,7 @@ const PreviewForm = () => {
     updateFormID,
     setUpdateFormID,
   } = useContext(ItemsContext);
-
+ 
   const navigate = useNavigate();
   const submitHandler = () => {
 
@@ -48,8 +48,6 @@ const PreviewForm = () => {
 
       console.log("post");
     } else {
-
-    console.log(updateFormID);
     const url = `http://localhost:8000/api/forms/update/${updateFormID}`
       fetch(url, {
         method: "PUT",
@@ -64,9 +62,11 @@ const PreviewForm = () => {
       setShowPreview(false);
       navigate("/forms");
       setUpdateFormID("");
+      setFormName("")
       console.log("update");
     }
   };
+
 
   return (
     <>

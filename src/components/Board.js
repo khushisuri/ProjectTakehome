@@ -14,7 +14,7 @@ const Board = () => {
     }),
   }));
 
-  const previewHandler = () =>{
+  const previewHandler = () =>{ 
      setShowPreview(showPreview=>!showPreview)
   } 
   return (
