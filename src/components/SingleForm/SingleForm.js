@@ -1,10 +1,13 @@
-import { useParams } from "react-router";
-import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import React, { useEffect, useState ,useContext} from "react";
 import Form from "../Form/Form";
+import { ItemsContext } from "../../context/SelectedItemsContext";
 
 const SingleForm = (id) => {
-  const [form, setForm] = useState("");
+  const [form, setForm ] = useState("");
+  const {setBoardList, setFormName,setUpdateFormID} = useContext(ItemsContext)
   const params = useParams();
+  const navigate =  useNavigate()
   useEffect(() => {
     fetch(`http://localhost:8000/api/forms/${params.id}`)
       .then((data) => data.json())
@@ -54,6 +57,12 @@ const SingleForm = (id) => {
     } ${date.getFullYear()} ${date.toTimeString()}`;
   };
 
+  const editSubmittedForm = () =>{
+      setFormName(form.name)
+      setBoardList(form.form_data)
+      setUpdateFormID(form.id)
+      navigate("/")
+  }
   return (
     <div  style={{display:"flex",justifyContent:"center"}}>
       {form && (
@@ -82,6 +91,7 @@ const SingleForm = (id) => {
               {form.updated_at}
             </p>
           </div>
+          <button onClick={()=>editSubmittedForm()}>Edit</button>
         </div>
       )}
     </div>

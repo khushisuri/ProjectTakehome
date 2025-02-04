@@ -74,6 +74,8 @@ const SelectedItemsContext = ({ children }) => {
   const [editElId, setEditElId] = useState("");
   const [showPreview, setShowPreview] = useState(false);
   const [submittedForms, setSubmittedForms] = useState([]);
+  const [formName, setFormName] = useState("");
+  const [updateFormID, setUpdateFormID] = useState("");
 
   const addItemToBoard = (id) => {
     const selectedEl = elList.filter((el) => el.id === id);
@@ -95,6 +97,10 @@ const SelectedItemsContext = ({ children }) => {
         setShowPreview,
         submittedForms,
         setSubmittedForms,
+        formName,
+        setFormName,
+        updateFormID,
+        setUpdateFormID
       }}
     >
       {children}

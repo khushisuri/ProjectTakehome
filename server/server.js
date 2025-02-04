@@ -41,14 +41,29 @@ app.get("/api/forms/list", (req, res) => {
     });
 });
 
-
-app.get('/api/forms/:id', (req, res) => {
-  const id = req.params.id
+app.get("/api/forms/:id", (req, res) => {
+  const id = req.params.id;
   Form.findById(id)
-    .then(result => {
+    .then((result) => {
       res.send(result);
     })
-    .catch(err => {
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.put("/api/forms/update/:id", (req, res) => {
+  const obj = {
+    form_name: req.body.name,
+    form_data: JSON.stringify(req.body.boardList),
+  };
+  const id = req.params.id;
+  Form
+    .findByIdAndUpdate(id,obj)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
       console.log(err);
     });
 });

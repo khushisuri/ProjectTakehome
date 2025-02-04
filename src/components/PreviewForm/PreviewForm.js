@@ -11,35 +11,60 @@ const PreviewForm = () => {
     setSubmittedForms,
     setBoardList,
     setShowPreview,
+    formName,
+    setFormName,
+    updateFormID,
+    setUpdateFormID,
   } = useContext(ItemsContext);
 
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-
   const submitHandler = () => {
-    if (name !== "") {
-      setSubmittedForms((submittedForms) => [
-        ...submittedForms,
-        [...boardList],
-      ]);
 
-      fetch("http://localhost:8000/api/forms/save", {
-        method: "POST",
+    if (!updateFormID) {
+      if (formName !== "") {
+        setSubmittedForms((submittedForms) => [
+          ...submittedForms,
+          [...boardList],
+        ]);
+
+        fetch("http://localhost:8000/api/forms/save", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: formName, boardList: boardList }),
+        })
+          .then((data) => data.json())
+          .then((val) => {
+            console.log("success");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        setBoardList([]);
+        setShowPreview(false);
+        navigate("/forms");
+      } else {
+        alert("Name cannot be empty");
+      }
+
+      console.log("post");
+    } else {
+
+    console.log(updateFormID);
+    const url = `http://localhost:8000/api/forms/update/${updateFormID}`
+      fetch(url, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name, boardList: boardList }),
+        body: JSON.stringify({ name: formName, boardList: boardList }),
       })
         .then((data) => data.json())
         .then((val) => {
           console.log("success");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+        }) 
       setBoardList([]);
       setShowPreview(false);
       navigate("/forms");
-    } else {
-      alert("Name cannot be empty");
+      setUpdateFormID("");
+      console.log("update");
     }
   };
 
@@ -54,8 +79,8 @@ const PreviewForm = () => {
           <input
             type="text"
             id="form_name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={formName}
+            onChange={(e) => setFormName(e.target.value)}
           ></input>
         </div>
         <div>

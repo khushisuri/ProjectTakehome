@@ -119,7 +119,7 @@ const EditForm = () => {
             value={placeholderVal}
             onChange={(e) => setPlaceholderIdVal(e.target.value)}
           ></input>
-          {optionsArr && (
+          {optionsArr.length > 0  && (
             <>
               <label htmlFor="id-placeholder">Add option</label>
               <input
